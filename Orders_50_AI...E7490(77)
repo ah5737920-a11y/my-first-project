@@ -1,0 +1,86 @@
+-- =============================================
+-- Project Name: 50 Orders SQL Analysis
+-- Author: Ali Hassan
+-- Date: Nov 2026
+-- Description: 50 Customers ka Order Data
+-- =============================================
+
+-- Step 1: Agar table pehle se hai to delete karo
+DROP TABLE IF EXISTS Orders_50;
+
+-- Step 2: Table banao
+CREATE TABLE Orders_50 (
+    Order_ID INT PRIMARY KEY,
+    Customer_Name VARCHAR(50),
+    City VARCHAR(50),
+    AMOUNT INT
+);
+
+-- Step 3: 50 Rows ka Data daalo
+INSERT INTO Orders_50 VALUES
+(1, 'John', 'Lahore', 1844),
+(2, 'John', 'Lahore', 1680),
+(3, 'John', 'Lahore', 2020),
+(4, 'Haider Ali', 'Lahore', 2542),
+(5, 'Haider Ali', 'Karachi', 1597),
+(6, 'Haider Ali', 'Karachi', 4636),
+(7, 'Haider Ali', 'Quetta', 4952),
+(8, 'Haider Ali', 'Multan', 2602),
+(9, 'Haider Ali', 'Karachi', 3935),
+(10, 'Haider Ali', 'Islamabad', 1074),
+(11, 'Haider Ali', 'Lahore', 1474),
+(12, 'Haider Ali', 'Lahore', 3626),
+(13, 'Haider Ali', 'Multan', 909),
+(14, 'Ali', 'Quetta', 1866),
+(15, 'Ali', 'Lahore', 3200),
+(16, 'Ali', 'Lahore', 2328),
+(17, 'Ali', 'Karachi', 4991),
+(18, 'Zain', 'Lahore', 4102),
+(19, 'John', 'Karachi', 2181),
+(20, 'Usman', 'Multan', 1296),
+(21, 'Haider Ali', 'Quetta', 3310),
+(22, 'John', 'Karachi', 544),
+(23, 'Sara', 'Quetta', 2619),
+(24, 'Zain', 'Karachi', 2342),
+(25, 'Ayesha', 'Islamabad', 860),
+(26, 'Zain', 'Islamabad', 3210),
+(27, 'John', 'Quetta', 562),
+(28, 'Ayesha', 'Lahore', 2912),
+(29, 'Zain', 'Islamabad', 3297),
+(30, 'Fatima', 'Multan', 3366),
+(31, 'Zain', 'Lahore', 1414),
+(32, 'Usman', 'Multan', 3345),
+(33, 'John', 'Quetta', 1862),
+(34, 'John', 'Multan', 1603),
+(35, 'Ahmed', 'Lahore', 3625),
+(36, 'Fatima', 'Karachi', 3988),
+(37, 'Haider Ali', 'Lahore', 4864),
+(38, 'Ali', 'Lahore', 901),
+(39, 'John', 'Karachi', 4797),
+(40, 'John', 'Quetta', 4976),
+(41, 'Ayesha', 'Karachi', 4406),
+(42, 'Ahmed', 'Multan', 1606),
+(43, 'Ayesha', 'Islamabad', 1572),
+(44, 'Sara', 'Multan', 2533),
+(45, 'Ahmed', 'Multan', 3155),
+(46, 'Zain', 'Karachi', 2265),
+(47, 'Fatima', 'Karachi', 3929),
+(48, 'Usman', 'Karachi', 2876),
+(49, 'Fatima', 'Lahore', 4530),
+(50, 'Fatima', 'Lahore', 3064);
+
+-- Step 4: Analysis Queries
+
+-- Q1: Total kitne rows hain?
+SELECT COUNT(*) AS Total_Rows FROM Orders_50;
+
+-- Q2: Har Customer ne kitne orders kiye? (Aapka wala screenshot)
+SELECT Customer_Name, COUNT(*) AS Total_Orders, SUM(AMOUNT) AS Total_Paisa
+FROM Orders_50
+GROUP BY Customer_Name
+ORDER BY Total_Orders DESC;
+-- Q3: Kis City se sab se zyada paisa aaya?
+SELECT City, SUM(AMOUNT) AS Total_Paisa
+FROM Orders_50
+GROUP BY City
+ORDER BY Total_Paisa DESC;
